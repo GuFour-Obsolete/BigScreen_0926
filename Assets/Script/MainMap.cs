@@ -96,7 +96,7 @@ public class MainMap : MonoBehaviour
     public void PLayStartAnim()
     {
         //StartCoroutine(FloatMapAnim());
-        FloatMapSetNow();
+        StartCoroutine(FloatMapSetNow());
     }
 
     /// <summary>
@@ -105,6 +105,8 @@ public class MainMap : MonoBehaviour
     /// <returns></returns>
     private IEnumerator FloatMapAnim()
     {
+        yield return new WaitForSeconds(1f);
+
         //for (int i = 0; i < chinaMap.Find("ProvincePoints").childCount; i++)
         //{
         //    chinaMap.Find("ProvincePoints").GetChild(i).
@@ -167,6 +169,7 @@ public class MainMap : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(20f);
 
         burstDount.transform.localScale = Vector3.zero;
         burstDount.color = new Color(1f, 1f, 1f, 1f);
@@ -185,30 +188,37 @@ public class MainMap : MonoBehaviour
         GameManager.m_Instance.gameProgress = 0;
     }
 
-    private void FloatMapSetNow()
+    private IEnumerator FloatMapSetNow()
     {
-        cam.position = new Vector3(10.64f, 0.49f, 45.85f);
-        cam.SetPositionAndRotation(new Vector3(10.64f, 1.44f, 45.85f),
-            Quaternion.Euler(45f, 0f, 0f));
+        //cam.position = new Vector3(10.64f, 0.49f, 45.85f);
+        //cam.SetPositionAndRotation(new Vector3(10.64f, 1.44f, 45.85f),
+        //    Quaternion.Euler(45f, 0f, 0f));
 
-        transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
-        transform.localScale = new Vector3(1.2f, 1f, 1f);
-        directionalLight.intensity = .5f;
+        //transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
+        //transform.localScale = new Vector3(1.2f, 1f, 1f);
+        //directionalLight.intensity = .5f;
 
-        pointLight.intensity = 12f;
-        hebeiMap.localPosition = new Vector3(hebeiMap.localPosition.x, .42f, hebeiMap.localPosition.z);
-        southMap.localPosition = new Vector3(southMap.localPosition.x, .4f, southMap.localPosition.z);
-        for (int i = 0; i < hebeiMap.Find("CityPoints").childCount; i++)
-        {
-            hebeiMap.Find("CityPoints").GetChild(i).
-                TryGet<TextMesh>("New Text").color = Color.gray;
-        }
+        //pointLight.intensity = 12f;
+        //hebeiMap.localPosition = new Vector3(hebeiMap.localPosition.x, .42f, hebeiMap.localPosition.z);
+        //southMap.localPosition = new Vector3(southMap.localPosition.x, .4f, southMap.localPosition.z);
+        //for (int i = 0; i < hebeiMap.Find("CityPoints").childCount; i++)
+        //{
+        //    hebeiMap.Find("CityPoints").GetChild(i).
+        //        TryGet<TextMesh>("New Text").color = Color.gray;
+        //}
 
-        for (int i = 0; i < southMap.Find("SouthPoints").childCount; i++)
-        {
-            southMap.Find("SouthPoints").GetChild(i).
-                TryGet<TextMesh>("New Text").color = Color.white;
-        }
+        //for (int i = 0; i < southMap.Find("SouthPoints").childCount; i++)
+        //{
+        //    southMap.Find("SouthPoints").GetChild(i).
+        //        TryGet<TextMesh>("New Text").color = Color.white;
+        //}
+
+        yield return new WaitForSeconds(.5f);
+
+        burstDount.transform.localScale = Vector3.zero;
+        burstDount.color = new Color(1f, 1f, 1f, 1f);
+        burstDount.transform.DOScale(Vector3.one * 1.5f, 2f);
+        burstDount.DOFade(0f, 3f);
 
         Get_Point_City(true);
         //for (int i = 0; i < Points_City.Length; i++)

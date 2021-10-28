@@ -41,13 +41,13 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         InitScene();
-
-        //StartCoroutine(StartAnim());
-        mainMap.PLayStartAnim();
+        //mainMap.PLayStartAnim();
 
 #if !UNITY_EDITOR
         IAMREADY();
 #endif
+
+        //GOGOGO();
     }
 
     private void Update()
@@ -72,13 +72,45 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public void GOGOGO()
+    {
+        mainMap.PLayStartAnim();
+    }
+
+    public void WAITING()
+    {
+    }
+
     /// <summary>
     /// ≥ı ºªØ≥°æ∞
     /// </summary>
     private void InitScene()
     {
-        cam.SetPositionAndRotation(new Vector3(0f, 45f, 49f), Quaternion.Euler(90f, 0f, 0f));
+        //cam.SetPositionAndRotation(new Vector3(0f, 45f, 49f), Quaternion.Euler(90f, 0f, 0f));
         //pointLight.transform.SetPositionAndRotation(new Vector3(10.84f, 2.61f, 48.92f), Quaternion.Euler(0f, 0f, 0f));
+
+        cam.position = new Vector3(10.64f, 0.49f, 45.85f);
+        cam.SetPositionAndRotation(new Vector3(10.64f, 1.44f, 45.85f),
+            Quaternion.Euler(45f, 0f, 0f));
+
+        transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
+        transform.localScale = new Vector3(1.2f, 1f, 1f);
+        directionalLight.intensity = .5f;
+
+        pointLight.intensity = 12f;
+        mainMap.hebeiMap.localPosition = new Vector3(mainMap.hebeiMap.localPosition.x, .42f, mainMap.hebeiMap.localPosition.z);
+        mainMap.southMap.localPosition = new Vector3(mainMap.southMap.localPosition.x, .4f, mainMap.southMap.localPosition.z);
+        for (int i = 0; i < mainMap.hebeiMap.Find("CityPoints").childCount; i++)
+        {
+            mainMap.hebeiMap.Find("CityPoints").GetChild(i).
+                TryGet<TextMesh>("New Text").color = Color.gray;
+        }
+
+        for (int i = 0; i < mainMap.southMap.Find("SouthPoints").childCount; i++)
+        {
+            mainMap.southMap.Find("SouthPoints").GetChild(i).
+                TryGet<TextMesh>("New Text").color = Color.white;
+        }
     }
 
     /// <summary>
