@@ -42,7 +42,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         InitScene();
 
-        StartCoroutine(StartAnim());
+        //StartCoroutine(StartAnim());
+        mainMap.PLayStartAnim();
 
 #if !UNITY_EDITOR
         IAMREADY();
