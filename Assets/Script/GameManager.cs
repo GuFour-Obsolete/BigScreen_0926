@@ -47,7 +47,7 @@ public class GameManager : MonoSingleton<GameManager>
         IAMREADY();
 #endif
 
-        //GOGOGO();
+        GOGOGO();
     }
 
     private void Update()
@@ -72,13 +72,12 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// 前端调用，启动程序
+    /// </summary>
     public void GOGOGO()
     {
         mainMap.PLayStartAnim();
-    }
-
-    public void WAITING()
-    {
     }
 
     /// <summary>
@@ -93,8 +92,8 @@ public class GameManager : MonoSingleton<GameManager>
         cam.SetPositionAndRotation(new Vector3(10.64f, 1.44f, 45.85f),
             Quaternion.Euler(45f, 0f, 0f));
 
-        transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
-        transform.localScale = new Vector3(1.2f, 1f, 1f);
+        mainMap.transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
+        mainMap.transform.localScale = new Vector3(1.2f, 1f, 1f);
         directionalLight.intensity = .5f;
 
         pointLight.intensity = 12f;

@@ -33,8 +33,11 @@ public class MainMap : MonoBehaviour
     //扩散的光环
     private SpriteRenderer burstDount;
 
-    //地图描边序列帧
+    //河北地图描边序列帧
     private Animator heBeiEdge;
+
+    //南网地图描边序列帧
+    private Animator southEdge;
 
     private Vector3[] posis = new Vector3[] { new Vector3(0.676f,1.312f,-0.731f), new Vector3(1.537f, 1.312f, 0.043f),
             new Vector3(-1.584f,1.312f,-0.233f) ,new Vector3(-0.362f,1.312f,0.585f),new Vector3(1.578f,1.312f,1.144f),
@@ -52,6 +55,7 @@ public class MainMap : MonoBehaviour
     {
         burstDount = southMap.TryGet<SpriteRenderer>("BurstDount");
         heBeiEdge = hebeiMap.TryGet<Animator>("HeBeiEdge");
+        southEdge = hebeiMap.TryGet<Animator>("SouthEdge");
 
         cam = Camera.main.transform;
         directionalLight = GameObject.Find("Directional Light").transform.TryGet<Light>();
@@ -144,12 +148,15 @@ public class MainMap : MonoBehaviour
 
         //yield return new WaitForSeconds(2f);
 
-        heBeiEdge.SetBool("IsPlay", true);
+        //heBeiEdge.SetBool("IsPlay", true);
+        southEdge.SetBool("IsPlay", true);
         pointLight.DOIntensity(15f, 4f);
 
         yield return new WaitForSeconds(4f);
 
-        heBeiEdge.transform.TryGet<SpriteRenderer>().
+        //heBeiEdge.transform.TryGet<SpriteRenderer>().
+        //DOFade(0f, 2f).SetEase(Ease.Linear);
+        southEdge.transform.TryGet<SpriteRenderer>().
             DOFade(0f, 2f).SetEase(Ease.Linear);
         hebeiMap.DOLocalMoveY(0.42f, 2f);
         southMap.DOLocalMoveY(0.4f, 2f);
@@ -168,8 +175,8 @@ public class MainMap : MonoBehaviour
                 TryGet<TextMesh>("New Text").color = Color.white;
         }
 
-        yield return new WaitForSeconds(2f);
-        //yield return new WaitForSeconds(20f);
+        //yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(20f);
 
         burstDount.transform.localScale = Vector3.zero;
         burstDount.color = new Color(1f, 1f, 1f, 1f);
@@ -213,6 +220,9 @@ public class MainMap : MonoBehaviour
         //        TryGet<TextMesh>("New Text").color = Color.white;
         //}
 
+        //transform.position = new Vector3(-2.2f, -2.7f, 46.5f);
+        //transform.localScale = new Vector3(1.2f, 1f, 1f);
+
         yield return new WaitForSeconds(.5f);
 
         burstDount.transform.localScale = Vector3.zero;
@@ -232,7 +242,7 @@ public class MainMap : MonoBehaviour
         Points_City[2].TryGet<Point_City>().PlayNumberAnim(21, "", 0f);
         Points_City[3].TryGet<Point_City>().PlayNumberAnim(57, "", 0f);
         Points_City[4].TryGet<Point_City>().PlayNumberAnim(10, "", 0f);
-        Points_City[5].TryGet<Point_City>().PlayNumberAnim(56, "", 0f);
+        Points_City[5].TryGet<Point_City>().PlayNumberAnim(6, "", 0f);
         Points_City[6].TryGet<Point_City>().PlayNumberAnim(36, "", 0f);
 
         GameManager.m_Instance.gameProgress = 0;
