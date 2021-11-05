@@ -4,8 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using Gu4.Extend;
 using Gu4.Frame;
-using UnityEngine.SceneManagement;
-
 using System.Runtime.InteropServices;
 
 //==============================
